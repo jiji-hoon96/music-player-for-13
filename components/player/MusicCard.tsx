@@ -2,9 +2,9 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { PlayerControls } from "./PlayerControls";
+import { PlayingBar } from "./PlayingBar";
 
 interface Song {
   title: string;
@@ -16,34 +16,6 @@ interface CardProps {
   description: string;
   songs: Song[];
 }
-
-const PlayingAnimation = ({ isPlaying }: { isPlaying: boolean }) => (
-  <div className="w-4 h-4 mr-2 mb-1 flex items-end space-x-0.5">
-    {[0, 1, 2].map((i) => (
-      <motion.span
-        key={i}
-        className="w-1 bg-primary"
-        initial={{ height: "20%" }}
-        animate={
-          isPlaying
-            ? {
-                height: ["20%", "80%", "20%"],
-              }
-            : { height: "20%" }
-        }
-        transition={
-          isPlaying
-            ? {
-                duration: 0.8,
-                repeat: Infinity,
-                delay: i * 0.2,
-              }
-            : {}
-        }
-      />
-    ))}
-  </div>
-);
 
 export function MusicCard({ profileImage, description, songs }: CardProps) {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -93,7 +65,7 @@ export function MusicCard({ profileImage, description, songs }: CardProps) {
                   index === currentSongIndex ? "font-bold text-primary" : ""
                 }`}
               >
-                <PlayingAnimation isPlaying={index === currentSongIndex && isPlaying} />
+                <PlayingBar isPlaying={index === currentSongIndex && isPlaying} />
                 <span>{song.title}</span>
               </li>
             ))}
