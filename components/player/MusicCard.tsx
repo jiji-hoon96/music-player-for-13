@@ -49,9 +49,11 @@ export function MusicCard({ profileImage, description, songs }: CardProps) {
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center space-x-4">
-        <Avatar className="w-16 h-16 border-4 border-gray-200">
-          <AvatarImage src={profileImage} alt="Profile" />
-          <AvatarFallback>PF</AvatarFallback>
+        <Avatar className="w-16 h-16 border-2 border-gray-200 overflow-hidden">
+          <AvatarImage src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+          <AvatarFallback className="animate-pulse">
+            <div className="w-full h-full bg-gray-300 rounded-full" />
+          </AvatarFallback>
         </Avatar>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
