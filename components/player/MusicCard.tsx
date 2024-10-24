@@ -16,11 +16,13 @@ interface CardProps {
   profileImage: string;
   description: string;
   songs: Song[];
+  isPlaying: boolean;
+  onPlay: () => void;
+  onStop: () => void;
 }
 
-export function MusicCard({ profileImage, description, songs }: CardProps) {
+export function MusicCard({ profileImage, description, songs, isPlaying, onPlay, onStop }: CardProps) {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -34,17 +36,21 @@ export function MusicCard({ profileImage, description, songs }: CardProps) {
   }, [isPlaying, currentSongIndex]);
 
   const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      onStop();
+    } else {
+      onPlay();
+    }
   };
 
   const playNextSong = () => {
     setCurrentSongIndex((prevIndex) => (prevIndex + 1) % songs.length);
-    setIsPlaying(true);
+    onPlay();
   };
 
   const playPreviousSong = () => {
     setCurrentSongIndex((prevIndex) => (prevIndex - 1 + songs.length) % songs.length);
-    setIsPlaying(true);
+    onPlay();
   };
 
   return (

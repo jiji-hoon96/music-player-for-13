@@ -1,3 +1,6 @@
+"use client";
+
+import { usePlayerStore } from "@/hooks/usePlayerStore";
 import { MusicCard } from "./MusicCard";
 
 interface Song {
@@ -16,15 +19,19 @@ interface CardListProps {
   cards: CardData[];
 }
 
-export function CardList({ cards }: CardListProps) {
+export function MusicCardList({ cards }: CardListProps) {
+  const { playingCardIndex, setPlayingCardIndex } = usePlayerStore();
   return (
     <div className="grid grid-cols-2 gap-4">
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <MusicCard
           key={card.id}
           profileImage={card.profileImage}
           description={card.description}
           songs={card.songs}
+          isPlaying={playingCardIndex === index}
+          onPlay={() => setPlayingCardIndex(index)}
+          onStop={() => setPlayingCardIndex(null)}
         />
       ))}
     </div>
