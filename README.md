@@ -1,8 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 음악 플레이어
 
-## Getting Started
+이 프로젝트는 `13 조의 엠티용 플레이 리스트` 입니다.
+유일한 공통점인 KT 멤버들로 구성되어 있습니다.
+공통점 찾다가 지쳐서 필 좀 받으려고 앞풀이 끝나고 바로 만들었습니다.
 
-First, run the development server:
+## 시작하기
+
+먼저, 개발 서버를 실행하세요:
 
 ```bash
 npm run dev
@@ -18,19 +22,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 데이터 커스터마이징
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 노래 목록
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+이 프로젝트에서 사용되는 노래 데이터는 `data/songList.ts`에 위치해 있습니다. 이 파일은 데모 목적으로 목업 데이터를 포함하고 있습니다. 실제 데이터를 사용하려면 목업 데이터를 실제 노래 데이터로 교체하세요. 각 노래 객체에는 `title`과 오디오 파일의 URL을 가리키는 `audioSrc`가 포함되어야 합니다.
 
-## Deploy on Vercel
+### 아바타 이미지
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+아바타 이미지는 `public/images` 디렉토리에 저장되어 있습니다. 이 이미지는 음악 플레이어에서 각 아티스트의 프로필 사진으로 사용됩니다. 기존 아바타 이미지를 본인의 이미지로 교체하세요. 로딩 시간과 성능을 최적화하기 위해 작은 크기의 이미지를 사용하는 것이 좋습니다.
