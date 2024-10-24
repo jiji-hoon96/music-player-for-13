@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { PlayerControls } from "./PlayerControls";
 import { PlayingBar } from "./PlayingBar";
@@ -49,12 +50,28 @@ export function MusicCard({ profileImage, description, songs }: CardProps) {
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center space-x-4">
-        <Avatar className="w-16 h-16 border-2 border-gray-200 overflow-hidden">
-          <AvatarImage src={profileImage} alt="Profile" className="w-full h-full object-cover" />
-          <AvatarFallback className="animate-pulse">
-            <div className="w-full h-full bg-gray-300 rounded-full" />
-          </AvatarFallback>
-        </Avatar>
+        <motion.div
+          animate={
+            isPlaying
+              ? {
+                  rotate: [0, 10, -10, 0],
+                  scale: [1, 1.1, 1],
+                }
+              : {}
+          }
+          transition={{
+            duration: 0.5,
+            repeat: Infinity,
+            repeatType: "loop",
+          }}
+        >
+          <Avatar className="w-16 h-16 border-2 border-gray-200 overflow-hidden rounded-full">
+            <AvatarImage src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+            <AvatarFallback className="animate-pulse">
+              <div className="w-full h-full bg-gray-300 rounded-full" />
+            </AvatarFallback>
+          </Avatar>
+        </motion.div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
